@@ -1,0 +1,25 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: kommander-acme-issuer
+spec:
+  acme:
+    email: <your_email>
+    # Letsencrypt Production
+    # server: https://acme-v02.api.letsencrypt.org/directory
+    # - or -
+    # Letsencrypt Staging
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: kommander-acme-issuer-account
+    solvers:
+      - dns01:
+          route53:
+            region: us-east-1
+            role: arn:aws:iam::YYYYYYYYYYYY:role/dns-manager
+            apiKeySecretRef:
+              name: eitco-api-key-secret
+              key:
+      # selector:
+      #   dnsNames:
+      #   - '*.sigma1.eitco.de'

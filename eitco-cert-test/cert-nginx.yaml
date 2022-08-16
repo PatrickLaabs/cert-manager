@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nginx1
+  namespace: nginx1
+spec:
+  secretName: nginx1
+  issuerRef:
+    name: kommander-acme-issuer
+    kind: ClusterIssuer
+  dnsNames:
+  - 'nginx1.sigma1.eitco.de'
